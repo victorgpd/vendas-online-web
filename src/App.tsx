@@ -4,7 +4,6 @@ function App() {
   return (
     <>
       <main>
-        <h1>Olá, Mundo!</h1>
         <LoginScreen></LoginScreen>
       </main>
     </>
