@@ -2,12 +2,13 @@ import { Input as InputAntd, InputProps as InputPropsAntd } from "antd"
 import { BoxInput, TitleInput } from "./input.styles"
 
 interface InputProps extends InputPropsAntd {
-    campo: string
+    campo: string,
+    margin: string,
 }
 
 const Input = (props: InputProps) => {
     return (
-        <BoxInput>
+        <BoxInput style={{margin: props.margin}}>
             <TitleInput>{props.campo}</TitleInput>
             <InputAntd {...props} />
         </BoxInput>
