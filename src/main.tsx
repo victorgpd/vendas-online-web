@@ -4,6 +4,7 @@ import { createBrowserRouter, RouteObject, RouterProvider } from "react-router-d
 import { createRoot } from 'react-dom/client'
 import { StrictMode } from 'react'
 import './index.css'
+import { GlobalProvider } from "./shared/hooks/useGlobalContext.tsx";
 
 const mainRoutes: RouteObject[] = [
   {
@@ -17,6 +18,8 @@ const router: RemixRouter = createBrowserRouter([...mainRoutes, ...loginRoutes])
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <GlobalProvider>
+      <RouterProvider router={router} />
+    </GlobalProvider>
   </StrictMode>,
 )
