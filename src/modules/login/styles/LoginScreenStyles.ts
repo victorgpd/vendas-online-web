@@ -3,7 +3,7 @@ import { Typography } from 'antd';
 
 const { Title } = Typography;
 
-export const MainContainer = styled.div`
+export const MainContainer = styled.main`
     width: 100%;
     height: 100vh;
     display: flex;
@@ -28,21 +28,22 @@ export const ContainerLogin = styled.div `
     max-width: 646px;
     padding: 22px;
     
+    flex: 0 1 auto;
     display: flex;
     align-items: center;
     justify-content: center;
 `
 
-export const TitleLogin = styled(Title)`
-    font-weight: 500;
-    margin: 8px;
-`
-
 export const LimitedContainer = styled.div`
     width: 100%;
     max-width: 498px;
-
+    
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+`
+    
+export const TitleLogin = styled(Title)`
+    font-weight: 500;
+    margin: 8px;
 `

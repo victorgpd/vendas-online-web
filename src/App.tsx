@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouteObject, RouterProvider } from "react-router-dom";
+import { useNotification } from "./shared/hooks/useNotification.ts";
 import type { Router as RemixRouter } from "@remix-run/router"
 import { loginRoutes } from './modules/login/routes.tsx'
-import { useNotification } from "./shared/hooks/useNotification.ts";
 
 const mainRoutes: RouteObject[] = [
   {
