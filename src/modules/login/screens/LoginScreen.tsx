@@ -7,13 +7,13 @@ import Input from "../../../shared/components/inputs/inputLogin/input"
 import SVGLogo from "../../../shared/components/icons/SVGHome"
 
 function LoginScreen() {
-    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const { postRequest, loading } = useRequests()
     const { accessToken, setAccessToken } = useGlobalContext()
 
     const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setUsername(event.target.value)
+        setEmail(event.target.value)
     }
 
     const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +21,7 @@ function LoginScreen() {
     }
 
     const hadleLogin = () => {
-        postRequest('http://localhost:5000/auth', { email: username, password: password })
+        postRequest('http://localhost:5000/auth', { email: email, password: password })
     }
 
     return (
@@ -33,7 +33,7 @@ function LoginScreen() {
                     <LimitedContainer>
                         <SVGLogo />
                         <TitleLogin level={2} type="secondary">LOGIN</TitleLogin>
-                        <Input margin="32px 0 0 0" campo="USUÁRIO" onChange={handleUsername} value={username}/>
+                        <Input margin="32px 0 0 0" campo="EMAIL" onChange={handleUsername} value={email}/>
                         <Input type="password" margin="22px 0 0 0" campo="SENHA" onChange={handlePassword} value={password}/>
                         <Button loading={loading} margin="64px 0 16px 0" type="primary" onClick={hadleLogin}>ENTRAR</Button>
                     </LimitedContainer>

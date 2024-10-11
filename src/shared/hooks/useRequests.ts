@@ -30,7 +30,7 @@ export const useRequests = () => {
             data: body,
         })
         .then((result) => {
-            setNotification("Entrando...", "success", "Logado com sucesso.")
+            setNotification("Entrando...", "success", "Logado com sucesso!")
             return result.data
         })
         .catch(() => {
