@@ -1,9 +1,10 @@
 import axios from "axios"
 import { useState } from "react"
+import { useGlobalContext } from "./useGlobalContext"
 
 export const useRequests = () => {
     const [loading, setLoading] = useState(false)
-
+    const { setNotification } = useGlobalContext()
 
     const getRequest = async (url: string) => {
         setLoading(true)
@@ -29,10 +30,11 @@ export const useRequests = () => {
             data: body,
         })
         .then((result) => {
+            setNotification("Entrando...", "success", "Logado com sucesso.")
             return result.data
         })
         .catch(() => {
-            alert("Erro!")
+            setNotification("Falha no login. ", "error", "Verifique suas credenciais e tente novamente.")
         })
 
         setLoading(false)
