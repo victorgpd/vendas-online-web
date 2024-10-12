@@ -3,7 +3,7 @@ import { useNotification } from "./shared/hooks/useNotification.ts";
 import type { Router as RemixRouter } from "@remix-run/router"
 import { loginRoutes } from './modules/login/routes.tsx'
 import { firstScreenRoutes } from "./modules/firstScreen/routes.tsx";
-import { productScreensRoutes } from "./modules/product/screens/routes.tsx";
+import { productScreensRoutes } from "./modules/product/routes.tsx";
 import { useGlobalContext } from "./shared/hooks/useGlobalContext.tsx";
 import { verifyLoggedIn } from "./shared/functions/connection/auth.ts";
 
