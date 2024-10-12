@@ -10,7 +10,7 @@ import { AuthType } from "../../modules/login/types/AuthType"
 export const useRequests = () => {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
-    const { setNotification } = useGlobalContext()
+    const { setNotification, setUser } = useGlobalContext()
 
     const getRequest = async (url: string) => {
         setLoading(true)
@@ -44,12 +44,12 @@ export const useRequests = () => {
         return returnData
     }
 
-    const authRequest = async <T>(body: unknown): Promise<void> => {
+    const authRequest = async (body: unknown): Promise<void> => {
         setLoading(true)
 
         await connectionAPIPost<AuthType>(URL_AUTH, body)
         .then((result) => {
-            setNotification("Entrando...", "success", "Logado com sucesso!")
+            setUser(result.user)
             setAuthorizationToken(result.accessToken)
             navigate("/product")
         })
