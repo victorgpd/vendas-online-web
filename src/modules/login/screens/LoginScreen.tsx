@@ -4,12 +4,11 @@ import { useState } from "react"
 import Button from "../../../shared/components/buttons/button/button"
 import Input from "../../../shared/components/inputs/inputLogin/input"
 import SVGLogo from "../../../shared/components/icons/SVGHome"
-import { UserType } from "../types/UserType"
 
 function LoginScreen() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const { postRequest, loading } = useRequests()
+    const { authRequest, loading } = useRequests()
 
     const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value)
@@ -20,7 +19,7 @@ function LoginScreen() {
     }
 
     const hadleLogin = async () => {
-        postRequest<UserType>('http://localhost:5000/auth', { email: email, password: password })
+        authRequest({ email: email, password: password })
     }
 
     return (
