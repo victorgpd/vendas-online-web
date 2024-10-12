@@ -5,6 +5,5 @@ export const productScreensRoutes: RouteObject[] = [
     {
       path: "/product",
       element: <Product />,
-      errorElement: <div>Página não encontrada</div>
     },
 ];

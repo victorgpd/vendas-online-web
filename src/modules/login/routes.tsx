@@ -5,6 +5,5 @@ export const loginRoutes: RouteObject[] = [
     {
       path: "/login",
       element: <LoginScreen />,
-      errorElement: <div>Página não encontrada</div>
     },
 ];

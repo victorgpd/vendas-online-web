@@ -2,7 +2,7 @@ import { ButtonProps } from "antd"
 import { ButtonAntd } from "./button.styles"
 
 interface ButtonCurrentProps extends ButtonProps {
-    margin: string
+    margin?: string
 }
 
 const Button = (props: ButtonCurrentProps) => {
