@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import { useGlobalContext } from "./useGlobalContext"
-import { connectionAPIPost } from "../functions/connection/connectionAPI"
+import ConnectionAPI, { connectionAPIPost, MethodType } from "../functions/connection/connectionAPI"
 import { URL_AUTH } from "../constants/urls"
 import { useNavigate } from "react-router-dom"
 import { setAuthorizationToken } from "../functions/connection/auth"
@@ -12,19 +12,23 @@ export const useRequests = () => {
     const [loading, setLoading] = useState(false)
     const { setNotification, setUser } = useGlobalContext()
 
-    const getRequest = async (url: string) => {
+    const request = async <T>(url: string, method: MethodType, saveGlobal?: (object: T) => void, body?: unknown): Promise<T | undefined> => {
         setLoading(true)
 
-        return await axios({
-            method: 'get',
-            url: url,
-        })
+        const returnObject: T | undefined  = await ConnectionAPI.connect<T>(url, method, body)
         .then((result) => {
-            return result.data
+            if (saveGlobal) {
+                saveGlobal(result)
+            }
+            return result
         })
-        .catch(() => {
-            alert("Erro!")
+        .catch((error: Error) => {
+            setNotification(error.message, "error")
+            return undefined
         })
+
+        setLoading(false)
+        return returnObject
     }
 
     const postRequest = async <T>(url: string, body: unknown): Promise<T | undefined> => {
@@ -62,7 +66,7 @@ export const useRequests = () => {
 
     return {
         loading,
-        getRequest,
+        request,
         postRequest,
         authRequest,
     }

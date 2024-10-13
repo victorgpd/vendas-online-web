@@ -3,9 +3,11 @@ import { MethodsEnum } from "../../enums/methods.enum";
 import { ERROR_ACCESS_DENIED, ERROR_CONNECT } from "../../constants/errosStatus";
 import { getAuthorizationToken } from "./auth";
 
+export type MethodType = "get" | "post" | "delete" | "put" | "patch"
+
 export default class ConnectionAPI {
     
-    static async call<T>(url: string, method: string, body: unknown): Promise<T> {
+    static async call<T>(url: string, method: MethodType, body: unknown): Promise<T> {
         const config: AxiosRequestConfig = {
             headers: {
                 Authorization: getAuthorizationToken(),
@@ -15,25 +17,18 @@ export default class ConnectionAPI {
 
         switch (method) {
             case(MethodsEnum.GET):
-                return (await axios.get<T>(url, config)).data
-
             case(MethodsEnum.DELETE):
-                return (await axios.delete<T>(url, config)).data
+                return (await axios[method]<T>(url, config)).data
 
             case(MethodsEnum.POST):
-                return (await axios.post<T>(url, body, config)).data
-
             case(MethodsEnum.PUT):
-                return (await axios.put<T>(url, body, config)).data
-
             case(MethodsEnum.PATCH):
             default:
-                return (await axios.patch<T>(url, body, config)).data
-                
+                return (await axios[method]<T>(url, body, config)).data
         }
     }
 
-    static async connect<T>(url: string, method: string, body?: unknown): Promise<T> {
+    static async connect<T>(url: string, method: MethodType, body?: unknown): Promise<T> {
         return ConnectionAPI.call<T>(url, method, body).catch((error) => {
             if (error.response) {
                 switch (error.response.status) {
