@@ -1,4 +1,3 @@
-import axios from "axios"
 import { useState } from "react"
 import { useGlobalContext } from "./useGlobalContext"
 import ConnectionAPI, { connectionAPIPost, MethodType } from "../functions/connection/connectionAPI"
