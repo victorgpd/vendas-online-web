@@ -7,7 +7,6 @@ import { setAuthorizationToken } from "../functions/connection/auth"
 import { AuthType } from "../../modules/login/types/AuthType"
 
 export const useRequests = () => {
-    const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
     const { setNotification, setUser } = useGlobalContext()
 
@@ -48,6 +47,7 @@ export const useRequests = () => {
     }
 
     const authRequest = async (body: unknown): Promise<void> => {
+        const navigate = useNavigate()
         setLoading(true)
 
         await connectionAPIPost<AuthType>(URL_AUTH, body)

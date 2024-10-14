@@ -11,7 +11,7 @@ const FirstScreen = () => {
         if (user) {
             navigate("/product") 
         }
-    }, [])
+    }, [user])
 
     return <Spin />
 }
