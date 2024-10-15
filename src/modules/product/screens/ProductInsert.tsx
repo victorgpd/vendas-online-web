@@ -60,7 +60,6 @@ const ProductInsert = () => {
 
   const clickInsertProduct = () => {
     connectionAPIPost(URL_PRODUCT, product).then(() => {
-      setNotification("Produto cadastrado!", "success")
       navigate(ProductRoutesEnum.PRODUCT)
     }).catch(() => {
       setNotification("Erro ao cadastrar o produto!", "error")
