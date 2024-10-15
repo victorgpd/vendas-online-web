@@ -3,11 +3,13 @@ import { ButtonAntd } from "./button.styles"
 
 interface ButtonCurrentProps extends ButtonProps {
     margin?: string
+    width?: string
+    height?: string
 }
 
 const Button = (props: ButtonCurrentProps) => {
     return (
-        <ButtonAntd style={{margin: props.margin}} {...props}>
+        <ButtonAntd style={{margin: props.margin, width: props.width, height: props.height}} {...props}>
             {props.children}
         </ButtonAntd>
     )
