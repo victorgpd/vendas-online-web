@@ -1,5 +1,5 @@
-import { Tooltip } from "antd"
-import { ProductType } from "../types/ProductType"
+import { ProductType } from "../../types/ProductType"
+import Tooltip from "../../../../shared/components/tooltip/Tooltip.tsx"
 
 interface TooltipImageProps {
     product: ProductType
@@ -8,7 +8,7 @@ interface TooltipImageProps {
 const TooltipImage = ({ product }: TooltipImageProps) => {
     
     return (
-        <Tooltip placement="bottomRight" title={product.name}>
+        <Tooltip tooltip={<img src={product.image} />}>
             <span>{product.id}</span>
         </Tooltip>
     )

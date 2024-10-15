@@ -7,7 +7,7 @@ import { URL_PRODUCT } from "../../../shared/constants/urls"
 import Table from "../../../shared/components/table/Table"
 import { Tag } from 'antd';
 import type { TableProps } from 'antd';
-import TooltipImage from "../components/TooltipImage"
+import TooltipImage from "../components/TooltipImage/TooltipImage"
 
 const columns: TableProps<ProductType>['columns'] = [
     {
