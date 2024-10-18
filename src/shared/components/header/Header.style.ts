@@ -5,7 +5,7 @@ export const HeaderContainer = styled.header`
     width: 100%;
     height: 70px;
     padding: 0 15px 0;
-    background-color: white;
+    background-color: #001529;
 
     position: relative;
 
@@ -31,9 +31,9 @@ export const MenuHamburguer = styled(MenuOutlined)`
     font-size: 20px;
     cursor: pointer;
     border-radius: 5px;
+    color: white;
 
     &:hover {
-        color: white;
         background-color: #1677ff;
         transition: all .4s;
     }
@@ -53,9 +53,9 @@ export const LogoutButton = styled(LogoutOutlined)`
     font-size: 20px;
     cursor: pointer;
     border-radius: 5px;
+    color: white;
 
     &:hover {
-        color: white;
         background-color: #1677ff;
         transition: all .4s;
     }

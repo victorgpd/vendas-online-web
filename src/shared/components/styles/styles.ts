@@ -21,6 +21,7 @@ export const LimitedContainer = styled.div<LimitedContainerProps>`
 
 interface DisplayFlexProps {
     width?: string
+    height?: string
     padding?: string
     background?: string
 
@@ -32,7 +33,7 @@ interface DisplayFlexProps {
 
 export const DisplayFlex = styled.div<DisplayFlexProps>`
     width: ${(props) => props.width || "100%"};
-    height: 100%;
+    height: ${(props) => props.height || "100%"};
     padding: ${(props) => props.padding || "0px"};
     background-color: ${(props) => props.background || "white"};
 

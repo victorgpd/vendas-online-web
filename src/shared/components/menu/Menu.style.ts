@@ -4,15 +4,23 @@ import { Typography } from "antd";
 
 const { Text } = Typography
 
-export const ContainerMenu = styled.div`
-    display: none;
+interface ContainerMenuProps {
+    background: string
+}
+
+export const ContainerMenu = styled.div<ContainerMenuProps>`
+    gap: 15px;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+
     position: absolute;
-    top: 72px;
+    top: 70px;
     left: 0;
 
     width: 240px;
     height: 100vh;
-    background-color: #14253d;
+    background-color: ${(props) => props.background};
     z-index: 999;
 
     -webkit-box-shadow: 1px 0px 8px 0px rgba(0,0,0, 0.71);
@@ -20,8 +28,6 @@ export const ContainerMenu = styled.div`
     box-shadow: 1px 0px 8px 0px rgba(0,0,0, 0.71);
 
     @media screen and (min-width: 820px) {
-        display: block;
-
         top: 0;
         left: 0;
     }
@@ -41,10 +47,10 @@ export const NameCompany = styled(Text)`
 
 
 export const ContainerCompany = styled.div`
-    width: 240px;
+    width: 100%;
     height: 70px;
     padding: 0 14px;
-    background-color: #14253d;
+    background-color: #001529;
     z-index: 999;
 
     gap: 8px;
@@ -53,7 +59,7 @@ export const ContainerCompany = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    -webkit-box-shadow: -2px 6px 4px 0px rgba(0,0,0, 0.47);
-    -moz-box-shadow: -2px 6px 4px 0px rgba(0,0,0, 0.47);
-    box-shadow: -2px 6px 4px 0px rgba(0,0,0, 0.47);
+    -webkit-box-shadow: 1px 6px 4px 0px rgba(0,0,0, 0.47);
+    -moz-box-shadow: 1px 6px 4px 0px rgba(0,0,0, 0.47);
+    box-shadow: 1px 6px 4px 0px rgba(0,0,0, 0.47);
 `

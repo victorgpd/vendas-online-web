@@ -54,7 +54,7 @@ const Screen = (props: ContainerProps) => {
     return (
         <>
             <Header menuActive={toggleStyle}>
-                <Menu display={isActive.menuActive ? "block" : "none"}/>
+                <Menu display={isActive.menuActive ? "flex" : "none"}/>
             </Header>
             <ScreenContainer>
                 <DisplayFlex width="100%" background={"#"} directionWrap="row nowrap" justify="flex-end">
