@@ -5,7 +5,7 @@ import { useRequests } from "../../../shared/hooks/useRequests"
 import { MethodsEnum } from "../../../shared/enums/methods.enum"
 import { useDataContext } from "../../../shared/hooks/useDataContext"
 import { InsertProduct } from "../../../shared/dtos/InsertProduct.dto"
-import { LimitedContainer, SelectContainer } from "../styles/productInsert.style"
+import { LimitedContainer, DisplayFlex } from "../../../shared/components/styles/styles"
 import Screen from "../../../shared/components/screen/Screen"
 import Select from "../../../shared/components/inputs/select/select"
 import Button from "../../../shared/components/buttons/button/button"
@@ -37,17 +37,10 @@ const ProductInsert = () => {
     }
   }, [])
   
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>, nameObject: string) => {
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>, nameObject: string, isNumber?: boolean) => {
     setProduct({
       ...product,
-      [nameObject]: event.target.value
-    })
-  }
-
-  const changePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setProduct({
-      ...product,
-      price: Number(event.target.value),
+      [nameObject]: isNumber ? Number(event.target.value) : event.target.value
     })
   }
 
@@ -58,24 +51,28 @@ const ProductInsert = () => {
     })
   }
 
-  const clickInsertProduct = () => {
-    connectionAPIPost(URL_PRODUCT, product).then(() => {
+  const clickInsertProduct = async () => {
+    await connectionAPIPost(URL_PRODUCT, product).then(() => {
+      setNotification("Produto cadastrado com sucesso!", "success")
       navigate(ProductRoutesEnum.PRODUCT)
     }).catch(() => {
       setNotification("Erro ao cadastrar o produto!", "error")
     })
   }
 
+  const clickCancelInsert = () => {
+    navigate(ProductRoutesEnum.PRODUCT)
+  }
+
   return (
       <Screen listCrumb={listCrumb}>
-          <LimitedContainer>
-            <Input onChange={(event) => onChange(event, 'name')} value={product.name} campo="Nome do Produto" />
-            <Input onChange={(event) => onChange(event, 'image')} value={product.image} campo="URL da Imagem" />
-            <Input onChange={(event) => changePrice(event)} value={product.price} campo="Preço" />
-            <SelectContainer>
+          <DisplayFlex directionWrap="row nowrap" justify="center">
+            <LimitedContainer width="400px" directionWrap="column" gap="15px" align="flex-end">
+              <Input onChange={(event) => onChange(event, 'name')} value={product.name} campo="Nome do Produto" />
+              <Input onChange={(event) => onChange(event, 'image')} value={product.image} campo="URL da Imagem" />
+              <Input onChange={(event) => onChange(event, 'price', true)} value={product.price} campo="Preço" />
               <Select
                 title="Categoria"
-                widthBox="100%"
                 width="100%"
                 onChange={selectCategory}
                 options={
@@ -84,11 +81,13 @@ const ProductInsert = () => {
                     value: `${category.id}`
                   }))
                 }
-              >
-                <Button onClick={clickInsertProduct} width="40%" type="primary">Inserir Produto</Button>
-              </Select>
-            </SelectContainer>
-          </LimitedContainer>
+              />
+              <DisplayFlex width="100%" gap="10px" justify="flex-end">
+                <Button onClick={clickInsertProduct} width="125px" type="primary">Inserir Produto</Button>
+                <Button onClick={clickCancelInsert} width="125px" danger>Cancelar</Button>
+              </DisplayFlex>
+            </LimitedContainer>
+          </DisplayFlex>
       </Screen>
   )
 }

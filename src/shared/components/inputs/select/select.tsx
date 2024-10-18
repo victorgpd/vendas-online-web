@@ -1,8 +1,7 @@
 import { Select as SelectAntd, SelectProps as SelectPropsAntd } from "antd"
-import { BoxSelect, SelectContainer, TitleSelect } from "./select.styles"
+import { BoxSelect, TitleSelect } from "./select.styles"
 
 interface SelectProps extends SelectPropsAntd {
-    children: React.ReactNode,
     title?: string,
     margin?: string,
     width?: string,
@@ -11,12 +10,9 @@ interface SelectProps extends SelectPropsAntd {
 
 const Select = (props: SelectProps) => {
     return (
-        <BoxSelect style={{margin: props.margin, width: props.widthBox}}>
+        <BoxSelect style={{margin: props.margin, width: "100%"}}>
             {props.title && <TitleSelect>{props.title}</TitleSelect>}
-            <SelectContainer>
-                <SelectAntd style={{width: props.width}} {...props}/>
-                {props.children}
-            </SelectContainer>
+            <SelectAntd style={{width: props.width}} {...props}/>
         </BoxSelect>
     )
 }
