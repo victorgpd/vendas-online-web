@@ -18,7 +18,7 @@ export const BackgroundImage = styled.img `
     position: absolute;
     left: 0;
     top: 0;
-    z-index: -1;
+    z-index: 0;
 `
 
 export const ContainerLogin = styled.div `
@@ -27,6 +27,7 @@ export const ContainerLogin = styled.div `
     height: 100vh;
     max-width: 646px;
     padding: 22px;
+    z-index: 1;
     
     flex: 0 1 auto;
     display: flex;

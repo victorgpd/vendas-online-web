@@ -2,7 +2,6 @@ import { useState } from "react"
 import { useGlobalContext } from "./useGlobalContext"
 import ConnectionAPI, { connectionAPIPost, MethodType } from "../functions/connection/connectionAPI"
 import { URL_AUTH } from "../constants/urls"
-import { useNavigate } from "react-router-dom"
 import { setAuthorizationToken } from "../functions/connection/auth"
 import { AuthType } from "../../modules/login/types/AuthType"
 
@@ -53,6 +52,7 @@ export const useRequests = () => {
         .then((result) => {
             setUser(result.user)
             setAuthorizationToken(result.accessToken)
+            location.href = "/"
         })
         .catch(() => {
             setNotification("Falha no login. ", "error", "Verifique suas credenciais e tente novamente.")

@@ -1,64 +1,34 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { ProductRoutesEnum } from "../routes"
-import { URL_CATEGORY, URL_PRODUCT } from "../../../shared/constants/urls"
+import { URL_CATEGORY } from "../../../shared/constants/urls"
 import { useRequests } from "../../../shared/hooks/useRequests"
 import { MethodsEnum } from "../../../shared/enums/methods.enum"
 import { useDataContext } from "../../../shared/hooks/useDataContext"
-import { InsertProduct } from "../../../shared/dtos/InsertProduct.dto"
 import { LimitedContainer, DisplayFlex } from "../../../shared/components/styles/styles"
 import Screen from "../../../shared/components/screen/Screen"
 import Select from "../../../shared/components/inputs/select/select"
 import Button from "../../../shared/components/buttons/button/button"
 import Input from "../../../shared/components/inputs/inputLogin/input"
-import { connectionAPIPost } from "../../../shared/functions/connection/connectionAPI"
 import { useNavigate } from "react-router-dom"
-import { useGlobalContext } from "../../../shared/hooks/useGlobalContext"
+import InputMoney from "../../../shared/components/inputs/inputMoney/InputMoney"
+import { useInsertProduct } from "../../../shared/hooks/useInsertProduct"
 
 const ProductInsert = () => {
   const navigate = useNavigate()
-  const { setNotification } = useGlobalContext()
+  const { loading, disableButton, product, clickInsertProduct, onChange, selectCategory } = useInsertProduct()
+  const { categories, setCategories } = useDataContext()
+  const { request } = useRequests()
   const listCrumb = [
     { name: "Home" },
     { name: "Produtos", navigateTo: ProductRoutesEnum.PRODUCT },
     { name: "Inserir Produto" },
   ]
-
-  const [product, setProduct] = useState<InsertProduct>({
-    name: "",
-    price: 0,
-    image: "",
-  })
-  const { categories, setCategories } = useDataContext()
-  const { request } = useRequests()
   
   useEffect(() => {
     if (categories.length == 0) {
       request(URL_CATEGORY, MethodsEnum.GET, setCategories)
     }
   }, [])
-  
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>, nameObject: string, isNumber?: boolean) => {
-    setProduct({
-      ...product,
-      [nameObject]: isNumber ? Number(event.target.value) : event.target.value
-    })
-  }
-
-  const selectCategory = (value: string) => {
-    setProduct({
-      ...product,
-      categoryId: Number(value),
-    })
-  }
-
-  const clickInsertProduct = async () => {
-    await connectionAPIPost(URL_PRODUCT, product).then(() => {
-      setNotification("Produto cadastrado com sucesso!", "success")
-      navigate(ProductRoutesEnum.PRODUCT)
-    }).catch(() => {
-      setNotification("Erro ao cadastrar o produto!", "error")
-    })
-  }
 
   const clickCancelInsert = () => {
     navigate(ProductRoutesEnum.PRODUCT)
@@ -66,11 +36,10 @@ const ProductInsert = () => {
 
   return (
       <Screen listCrumb={listCrumb}>
-          <DisplayFlex directionWrap="row nowrap" justify="center">
-            <LimitedContainer width="400px" directionWrap="column" gap="15px" align="flex-end">
+          <DisplayFlex directionWrap="row nowrap" background="#" justify="center">
+            <LimitedContainer width="400px" directionWrap="column nowrap" gap="15px" align="flex-end">
               <Input onChange={(event) => onChange(event, 'name')} value={product.name} campo="Nome do Produto" />
               <Input onChange={(event) => onChange(event, 'image')} value={product.image} campo="URL da Imagem" />
-              <Input onChange={(event) => onChange(event, 'price', true)} value={product.price} campo="Preço" />
               <Select
                 title="Categoria"
                 width="100%"
@@ -82,8 +51,9 @@ const ProductInsert = () => {
                   }))
                 }
               />
-              <DisplayFlex width="100%" gap="10px" justify="flex-end">
-                <Button onClick={clickInsertProduct} width="125px" type="primary">Inserir Produto</Button>
+              <InputMoney onChange={(event) => onChange(event, 'price', true)} value={product.price} campo="Preço" />
+              <DisplayFlex width="100%" background="#" gap="10px" justify="flex-end">
+                <Button onClick={clickInsertProduct} loading={loading} disabled={disableButton} width="135px" type="primary">Inserir Produto</Button>
                 <Button onClick={clickCancelInsert} width="125px" danger>Cancelar</Button>
               </DisplayFlex>
             </LimitedContainer>

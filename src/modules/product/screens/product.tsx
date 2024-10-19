@@ -11,13 +11,14 @@ import { MethodsEnum } from "../../../shared/enums/methods.enum"
 import { useDataContext } from "../../../shared/hooks/useDataContext"
 import { columnsProduct } from "../../../shared/components/table/columnsTable"
 import { Input } from "antd"
+import { DisplayFlex } from "../../../shared/components/styles/styles"
 
 const { Search } = Input
 
 const Product = () => {
   const { products, setProducts } = useDataContext()
   const { request } = useRequests()
-  const [ productsFiltered, setProductsFiltered ] = useState<ProductType[]>()
+  const [ productsFiltered, setProductsFiltered ] = useState<ProductType[]>([])
   const navigate = useNavigate()
 
   useEffect(() => { setProductsFiltered([...products]) }, [products])
@@ -42,8 +43,10 @@ const Product = () => {
       <Screen listCrumb={listCrumb}
               afterCrumb={<Button type="primary" width="100px" onClick={onClickInsert}>Inserir</Button>}>
           
-          <Search style={{minWidth: "300px", maxWidth: "600px"}} placeholder="Buscar Produto" onSearch={onSearch} onChange={(event) => onSearch(event.target.value)} enterButton />
-          <Table<ProductType> style={{width: "100%"}} columns={columnsProduct} dataSource={productsFiltered} />
+          <DisplayFlex background="#" directionWrap="column nowrap" gap="15px">
+            <Search style={{minWidth: "300px", maxWidth: "600px"}} placeholder="Buscar Produto" onSearch={onSearch} onChange={(event) => onSearch(event.target.value)} enterButton />
+            <Table<ProductType> style={{width: "100%"}} columns={columnsProduct} dataSource={productsFiltered} />
+          </DisplayFlex>
       </Screen>
   )
 }
