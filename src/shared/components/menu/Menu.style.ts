@@ -15,7 +15,7 @@ export const ContainerMenu = styled.div<ContainerMenuProps>`
     align-items: flex-end;
 
     position: absolute;
-    top: 70px;
+    top: 0px;
     left: 0;
 
     width: 240px;
@@ -28,7 +28,7 @@ export const ContainerMenu = styled.div<ContainerMenuProps>`
     box-shadow: 1px 0px 8px 0px rgba(0,0,0, 0.71);
 
     @media screen and (min-width: 820px) {
-        top: 0;
+        top: -70px;
         left: 0;
     }
 `

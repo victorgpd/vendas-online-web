@@ -43,7 +43,7 @@ const Product = () => {
       <Screen listCrumb={listCrumb}
               afterCrumb={<Button type="primary" width="100px" onClick={onClickInsert}>Inserir</Button>}>
           
-          <DisplayFlex background="#" directionWrap="column nowrap" gap="15px">
+          <DisplayFlex background="#" directionwrap="column nowrap" align="center" gap="15px">
             <Search style={{minWidth: "300px", maxWidth: "600px"}} placeholder="Buscar Produto" onSearch={onSearch} onChange={(event) => onSearch(event.target.value)} enterButton />
             <Table<ProductType> style={{width: "100%"}} columns={columnsProduct} dataSource={productsFiltered} />
           </DisplayFlex>

@@ -5,7 +5,6 @@ import { Modal } from "antd"
 import { useNavigate } from "react-router-dom"
 
 interface HeaderProps {
-    children: React.ReactNode
     menuActive: () => void
 }
 
@@ -26,7 +25,6 @@ const Header = (props: HeaderProps) => {
             <HeaderContainer>
                 <MenuHamburguer onClick={props.menuActive} />
                 <LogoutButton onClick={showModal} />
-                {props.children}
             </HeaderContainer>
             <Modal title="Atenção" open={isModalOpen} onOk={() => logout(navigate)} onCancel={handleCancel}>
                 <p>Tem certeza que deseja sair?</p>

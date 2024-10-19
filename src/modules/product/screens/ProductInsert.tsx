@@ -1,43 +1,32 @@
-import { useEffect } from "react"
-import { ProductRoutesEnum } from "../routes"
-import { URL_CATEGORY } from "../../../shared/constants/urls"
-import { useRequests } from "../../../shared/hooks/useRequests"
-import { MethodsEnum } from "../../../shared/enums/methods.enum"
-import { useDataContext } from "../../../shared/hooks/useDataContext"
-import { LimitedContainer, DisplayFlex } from "../../../shared/components/styles/styles"
-import Screen from "../../../shared/components/screen/Screen"
-import Select from "../../../shared/components/inputs/select/select"
-import Button from "../../../shared/components/buttons/button/button"
-import Input from "../../../shared/components/inputs/inputLogin/input"
-import { useNavigate } from "react-router-dom"
 import InputMoney from "../../../shared/components/inputs/inputMoney/InputMoney"
+import Input from "../../../shared/components/inputs/inputLogin/input"
+import Button from "../../../shared/components/buttons/button/button"
+import Select from "../../../shared/components/inputs/select/select"
+import Screen from "../../../shared/components/screen/Screen"
+import { ProductRoutesEnum } from "../routes"
+import { useNavigate } from "react-router-dom"
+import { useCategory } from "../../../shared/hooks/useCategory"
 import { useInsertProduct } from "../../../shared/hooks/useInsertProduct"
+import { LimitedContainer, DisplayFlex } from "../../../shared/components/styles/styles"
 
 const ProductInsert = () => {
   const navigate = useNavigate()
   const { loading, disableButton, product, clickInsertProduct, onChange, selectCategory } = useInsertProduct()
-  const { categories, setCategories } = useDataContext()
-  const { request } = useRequests()
-  const listCrumb = [
-    { name: "Home" },
-    { name: "Produtos", navigateTo: ProductRoutesEnum.PRODUCT },
-    { name: "Inserir Produto" },
-  ]
-  
-  useEffect(() => {
-    if (categories.length == 0) {
-      request(URL_CATEGORY, MethodsEnum.GET, setCategories)
-    }
-  }, [])
-
+  const { categories } = useCategory()
   const clickCancelInsert = () => {
     navigate(ProductRoutesEnum.PRODUCT)
   }
-
+  
+  const listCrumb = [
+    { name: "Home" },
+    { name: "Produtos", navigateTo: ProductRoutesEnum.PRODUCT },
+    { name: "Inserir Produto" }
+  ]
+  
   return (
       <Screen listCrumb={listCrumb}>
-          <DisplayFlex directionWrap="row nowrap" background="#" justify="center">
-            <LimitedContainer width="400px" directionWrap="column nowrap" gap="15px" align="flex-end">
+          <DisplayFlex directionwrap="row nowrap" background="#" justify="center">
+            <LimitedContainer width="400px" directionwrap="column nowrap" gap="15px" align="flex-end">
               <Input onChange={(event) => onChange(event, 'name')} value={product.name} campo="Nome do Produto" />
               <Input onChange={(event) => onChange(event, 'image')} value={product.image} campo="URL da Imagem" />
               <Select

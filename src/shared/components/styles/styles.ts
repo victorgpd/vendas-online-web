@@ -4,7 +4,7 @@ interface LimitedContainerProps {
     width?: string
 
     gap?: string
-    directionWrap?: "row nowrap" | "row wrap" | "column nowrap" | "column wrap"
+    directionwrap?: "row nowrap" | "row wrap" | "column nowrap" | "column wrap"
     align?: "flex-start" | "center" | "flex-end"
     justify?: "flex-start" | "space-around" | "space-between" | "space-evenly" | "center" | "flex-end"
 }
@@ -14,7 +14,7 @@ export const LimitedContainer = styled.div<LimitedContainerProps>`
 
     gap: ${(props) => props.gap || "0px"};
     display: flex;
-    flex-flow: ${(props) => props.directionWrap || "row nowrap"};
+    flex-flow: ${(props) => props.directionwrap || "row nowrap"};
     justify-content: ${(props) => props.justify || "flex-start"};
     align-items: ${(props) => props.align || "flex-start"};
 `
@@ -26,7 +26,7 @@ interface DisplayFlexProps {
     background?: string
 
     gap?: string
-    directionWrap?: "row nowrap" | "row wrap" | "column nowrap" | "column wrap"
+    directionwrap?: "row nowrap" | "row wrap" | "column nowrap" | "column wrap"
     align?: "flex-start" | "center" | "flex-end"
     justify?: "flex-start" | "space-around" | "space-between" | "space-evenly" | "center" | "flex-end"
 }
@@ -39,7 +39,7 @@ export const DisplayFlex = styled.div<DisplayFlexProps>`
 
     gap: ${(props) => props.gap || "0px"};
     display: flex;
-    flex-flow: ${(props) => props.directionWrap || "row nowrap"};
+    flex-flow: ${(props) => props.directionwrap || "row nowrap"};
     justify-content: ${(props) => props.justify || "flex-start"};
     align-items: ${(props) => props.align || "flex-start"};
 `

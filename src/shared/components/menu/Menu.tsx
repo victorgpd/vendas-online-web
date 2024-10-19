@@ -6,6 +6,7 @@ import { Menu as MenuAntd, Switch } from 'antd';
 import { ProductRoutesEnum } from "../../../modules/product/routes";
 import { useNavigate } from "react-router-dom";
 import { DisplayFlex } from "../styles/styles";
+import { CategoryRoutesEnum } from "../../../modules/category/routes";
 
 interface MenuProps {
     display: "flex" | "none"
@@ -39,8 +40,8 @@ const Menu = (props: MenuProps) => {
           label: 'Categorias',
           icon: <AppstoreOutlined />,
           children: [
-            { key: 'category_view', label: 'Lista de Categoria' },
-            { key: 'category_insert', label: 'Cadastrar Categoria' },
+            { key: 'category_view', label: 'Lista de Categoria', onClick: () => navigate(CategoryRoutesEnum.CATEGORY) },
+            { key: 'category_insert', label: 'Cadastrar Categoria', onClick: () => navigate(CategoryRoutesEnum.CATEGORY_INSERT) },
           ],
         },
         {

@@ -10,9 +10,10 @@ import { useEffect } from "react";
 import { URL_USER } from "./shared/constants/urls.ts";
 import { MethodsEnum } from "./shared/enums/methods.enum.ts";
 import { useGlobalContext } from "./shared/hooks/useGlobalContext.tsx";
+import { categoryScreensRoutes } from "./modules/category/routes.tsx";
   
 const routes: RouteObject[] = [...loginRoutes,]
-const routesLoggedIn: RouteObject[] = [...productScreensRoutes, ...firstScreenRoutes, ].map((route) => ({
+const routesLoggedIn: RouteObject[] = [...productScreensRoutes, ...categoryScreensRoutes, ...firstScreenRoutes, ].map((route) => ({
   ...route,
   loader: verifyLoggedIn
 }))

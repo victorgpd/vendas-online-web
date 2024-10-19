@@ -3,6 +3,7 @@ import type { TableProps } from 'antd';
 import TooltipImage from "../../../modules/product/components/TooltipImage/TooltipImage"
 import { convertNumberToMoney } from "../../functions/money"
 import { ProductType } from '../../../modules/product/types/ProductType';
+import { CategoryType } from '../../../modules/category/types/CategoryType';
 
 export const columnsProduct: TableProps<ProductType>['columns'] = [
     {
@@ -38,4 +39,23 @@ export const columnsProduct: TableProps<ProductType>['columns'] = [
         );
       },
     },
+]
+
+export const columnsCategories: TableProps<CategoryType>['columns'] = [
+  {
+    title: 'ID',
+    dataIndex: 'id',
+    key: 'id'
+  },
+  {
+    title: 'Categoria',
+    dataIndex: 'name',
+    key: 'name',
+    render: (_, {name}) => <span>{name.toUpperCase()}</span>,
+  },
+  {
+    title: 'Produtos cadastrados',
+    dataIndex: 'amountProducts',
+    key: 'amountProducts',
+  },
 ]

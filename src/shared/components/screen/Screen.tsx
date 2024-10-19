@@ -7,7 +7,7 @@ import { DisplayFlex } from "../styles/styles"
 import Header from "../header/Header"
 
 interface ContainerProps {
-    children: React.ReactNode
+    children?: React.ReactNode
     afterCrumb?: React.ReactNode
     listCrumb?: ListBreadCrumb[]
 }
@@ -53,12 +53,11 @@ const Screen = (props: ContainerProps) => {
 
     return (
         <>
-            <Header menuActive={toggleStyle}>
-                <Menu display={isActive.menuActive ? "flex" : "none"}/>
-            </Header>
+            <Header menuActive={toggleStyle} />
             <ScreenContainer>
-                <DisplayFlex width="100%" background={"#"} directionWrap="row nowrap" justify="flex-end">
-                    <DisplayFlex width={isActive.widthElements} background="#" padding="15px" directionWrap="column nowrap">
+                <Menu display={isActive.menuActive ? "flex" : "none"}/>
+                <DisplayFlex width="100%" background={"#"} directionwrap="row nowrap" justify="flex-end">
+                    <DisplayFlex width={isActive.widthElements} background="#" padding="15px" directionwrap="column nowrap">
                         <BreadCrumbContainer>
                             {props.listCrumb && (<BreadCrumb listCrumb={props.listCrumb} />)}
                             {props.afterCrumb}

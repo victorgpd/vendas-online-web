@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint:fix": "eslint ./src --ext .jsx, .js, .ts, .tsx --fix --ignore-path ./.gitignore",
+    "lint:format": "eslint .",
+    "lint": "npm run lint:format && npm run lint:fix"
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
