@@ -28,23 +28,6 @@ export const useRequests = () => {
         return returnObject
     }
 
-    const postRequest = async <T>(url: string, body: unknown): Promise<T | undefined> => {
-        setLoading(true)
-
-        const returnData = await connectionAPIPost<T>(url, body)
-        .then((result) => {
-            setNotification("Entrando...", "success", "Logado com sucesso!")
-            return result
-        })
-        .catch(() => {
-            setNotification("Falha no login. ", "error", "Verifique suas credenciais e tente novamente.")
-            return undefined
-        })
-
-        setLoading(false)
-        return returnData
-    }
-
     const authRequest = async (body: unknown): Promise<void> => {
         setLoading(true)
 
@@ -64,7 +47,6 @@ export const useRequests = () => {
     return {
         loading,
         request,
-        postRequest,
         authRequest,
     }
 }

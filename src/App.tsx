@@ -4,7 +4,7 @@ import type { Router as RemixRouter } from "@remix-run/router"
 import { loginRoutes } from './modules/login/routes.tsx'
 import { firstScreenRoutes } from "./modules/firstScreen/routes.tsx";
 import { productScreensRoutes } from "./modules/product/routes.tsx";
-import { verifyLoggedIn } from "./shared/functions/connection/auth.ts";
+import { getAuthorizationToken, verifyLoggedIn } from "./shared/functions/connection/auth.ts";
 import { useRequests } from "./shared/hooks/useRequests.ts";
 import { useEffect } from "react";
 import { URL_USER } from "./shared/constants/urls.ts";
@@ -25,7 +25,10 @@ function App() {
   const { request } = useRequests()
 
   useEffect(() => {
-    request(URL_USER, MethodsEnum.GET, setUser)
+    const token = getAuthorizationToken()
+    if (token) {
+      request(URL_USER, MethodsEnum.GET, setUser)
+    }
   }, [])
 
   return (
