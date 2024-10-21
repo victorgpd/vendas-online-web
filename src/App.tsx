@@ -9,8 +9,8 @@ import { useRequests } from "./shared/hooks/useRequests.ts";
 import { useEffect } from "react";
 import { URL_USER } from "./shared/constants/urls.ts";
 import { MethodsEnum } from "./shared/enums/methods.enum.ts";
-import { useGlobalContext } from "./shared/hooks/useGlobalContext.tsx";
 import { categoryScreensRoutes } from "./modules/category/routes.tsx";
+import { useGlobalReducer } from "./store/reducers/globalReducer/useGlobalReducer.ts";
   
 const routes: RouteObject[] = [...loginRoutes,]
 const routesLoggedIn: RouteObject[] = [...productScreensRoutes, ...categoryScreensRoutes, ...firstScreenRoutes, ].map((route) => ({
@@ -22,7 +22,7 @@ const router: RemixRouter = createBrowserRouter([...routes, ...routesLoggedIn])
 
 function App() {
   const { contextHolder } = useNotification()
-  const { setUser } = useGlobalContext()
+  const { setUser } = useGlobalReducer()
   const { request } = useRequests()
 
   useEffect(() => {

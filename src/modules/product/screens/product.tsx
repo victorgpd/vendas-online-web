@@ -5,7 +5,7 @@ import { Input } from 'antd';
 import { useEffect, useState } from 'react';
 import { ProductRoutesEnum } from '../routes';
 import { useNavigate } from 'react-router-dom';
-import { ProductType } from '../types/ProductType';
+import { ProductType } from '../../../shared/types/ProductType';
 import { URL_PRODUCT } from '../../../shared/constants/urls';
 import { useRequests } from '../../../shared/hooks/useRequests';
 import { MethodsEnum } from '../../../shared/enums/methods.enum';
