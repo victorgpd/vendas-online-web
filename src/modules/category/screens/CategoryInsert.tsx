@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Button from '../../../shared/components/buttons/button/button';
-import Input from '../../../shared/components/inputs/inputLogin/input';
+import Input from '../../../shared/components/inputs/input/input';
 import Screen from '../../../shared/components/screen/Screen';
 import { DisplayFlex, LimitedContainer } from '../../../shared/components/styles/styles';
 import { CategoryRoutesEnum } from '../routes';
