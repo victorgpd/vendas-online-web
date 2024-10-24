@@ -1,10 +1,7 @@
-import { Table as TableAntd } from "antd";
-import { TableProps } from "antd";
+import { TableProps, Table as TableAntd } from 'antd';
 
 function Table<RecordType extends object = any>(props: TableProps<RecordType>) {
-    return (
-        <TableAntd {...props} />
-    )
+  return <TableAntd {...props} />;
 }
 
-export default Table
+export default Table;

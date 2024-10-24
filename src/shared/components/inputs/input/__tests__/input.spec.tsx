@@ -1,10 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import Input from '../input';
-import { InputTestIdEnum } from './InputTestIdEnum';
 
 const TITLE_MOOK = 'TITLE_MOOK';
 const TEST_ID = 'TEST_ID_INPUT';
 const MARGIN = '20px';
+
+export enum InputTestIdEnum {
+  BOX_INPUT = 'BOX_INPUT',
+  INPUT_TITLE = 'INPUT_TITLE',
+}
 
 describe('Test Input', () => {
   beforeEach(() => {
