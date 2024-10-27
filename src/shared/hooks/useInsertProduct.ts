@@ -14,7 +14,7 @@ export const useInsertProduct = () => {
   const { searchCategories } = useCategoryReducer();
   const { setNotification } = useGlobalReducer();
   const [loading, setLoading] = useState(false);
-  const [disableButton, setDisableButton] = useState(true);
+  const [disabledButton, setDisableButton] = useState(true);
   const [product, setProduct] = useState<InsertProduct>({
     name: '',
     price: 0,
@@ -65,7 +65,7 @@ export const useInsertProduct = () => {
   return {
     product,
     loading,
-    disableButton,
+    disabledButton,
     onChange,
     selectCategory,
     clickInsertProduct,

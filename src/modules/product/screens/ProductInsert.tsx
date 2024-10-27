@@ -13,7 +13,7 @@ import { CategoryType } from '../../../shared/types/CategoryType';
 
 const ProductInsert = () => {
   const navigate = useNavigate();
-  const { loading, disableButton, product, clickInsertProduct, onChange, selectCategory } =
+  const { loading, disabledButton, product, clickInsertProduct, onChange, selectCategory } =
     useInsertProduct();
   const { categories } = useCategory();
   const clickCancelInsert = () => {
@@ -68,7 +68,7 @@ const ProductInsert = () => {
               data-testid={ProductInsertTestIdEnum.PRODUCT_BUTTON_INSERT}
               onClick={clickInsertProduct}
               loading={loading}
-              disabled={disableButton}
+              disabled={disabledButton}
               width="135px"
               type="primary"
             >

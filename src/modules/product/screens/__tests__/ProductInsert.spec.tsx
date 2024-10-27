@@ -1,12 +1,14 @@
-import { fireEvent, render } from '@testing-library/react';
 import ProductInsert from '../ProductInsert';
+import { fireEvent, render } from '@testing-library/react';
 import { mockProductInsert } from '../../__mocks__/ProductInsert.mock';
 
 let value = '';
 let type = '';
+const mockNavigate = jest.fn();
+const mockButtonInsert = jest.fn();
 
 jest.mock('react-router-dom', () => ({
-  useNavigate: () => jest.fn(),
+  useNavigate: () => mockNavigate,
 }));
 
 jest.mock('../../../../shared/hooks/useCategory', () => ({
@@ -19,8 +21,8 @@ jest.mock('../../../../shared/hooks/useInsertProduct', () => ({
   useInsertProduct: () => ({
     product: mockProductInsert,
     loading: false,
-    disableButton: false,
-    clickInsertProduct: jest.fn(),
+    disabledButton: false,
+    clickInsertProduct: mockButtonInsert,
     onChange: (e: React.ChangeEvent<HTMLInputElement>, x: string) => {
       value = e.target.value;
       type = x;
@@ -80,5 +82,23 @@ describe('Test Screen Product Insert', () => {
 
     expect(value).toEqual('http-teste');
     expect(type).toEqual('image');
+  });
+
+  it('should call clickInsertProduct in click insert button', () => {
+    const { getByTestId } = render(<ProductInsert />);
+    const button = getByTestId(ProductInsertTestIdEnum.PRODUCT_BUTTON_INSERT);
+
+    fireEvent.click(button);
+
+    expect(mockButtonInsert).toHaveBeenCalled();
+  });
+
+  it('should call navigate in click cancel button', () => {
+    const { getByTestId } = render(<ProductInsert />);
+    const button = getByTestId(ProductInsertTestIdEnum.PRODUCT_BUTTON_CANCEL);
+
+    fireEvent.click(button);
+
+    expect(mockNavigate).toHaveBeenCalled();
   });
 });
