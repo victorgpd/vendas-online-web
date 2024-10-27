@@ -36,6 +36,8 @@ const Header = (props: HeaderProps) => {
         open={isModalOpen}
         onOk={() => logout(navigate)}
         onCancel={handleCancel}
+        okText="Sim"
+        cancelText="Não"
       >
         <p data-testid={HeaderTestIdEnum.HEADER_MODAL_P}>Tem certeza que deseja sair?</p>
       </Modal>
