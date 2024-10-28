@@ -1,5 +1,12 @@
-import { act, renderHook } from '@testing-library/react';
+import axios from 'axios';
+import AxiosMockAdapter from 'axios-mock-adapter';
 import { useInsertProduct } from '../useInsertProduct';
+import { act, renderHook } from '@testing-library/react';
+import { URL_PRODUCT } from '../../constants/urls';
+
+const mockAxios = new AxiosMockAdapter(axios);
+
+mockAxios.onPost(URL_PRODUCT, {});
 
 const mockNavigate = jest.fn();
 const mockSetNotification = jest.fn();
@@ -108,5 +115,17 @@ describe.only('Test useInsertProduct', () => {
       result.current.selectCategory('4321');
     });
     expect(result.current.disabledButton).toEqual(false);
+  });
+
+  it('should call axios.post', () => {
+    const spyAxios = jest.spyOn(axios, 'post');
+
+    const { result } = renderHook(() => useInsertProduct());
+
+    act(() => {
+      result.current.clickInsertProduct();
+    });
+
+    expect(spyAxios.mock.calls.length).toEqual(1);
   });
 });
