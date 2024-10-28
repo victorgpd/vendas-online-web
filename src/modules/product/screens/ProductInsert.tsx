@@ -11,7 +11,7 @@ import { LimitedContainer, DisplayFlex } from '../../../shared/components/styles
 import { ProductInsertTestIdEnum } from './__tests__/ProductInsert.spec';
 import { CategoryType } from '../../../shared/types/CategoryType';
 
-const ProductInsert = () => {
+export const ProductInsert = () => {
   const navigate = useNavigate();
   const { loading, disabledButton, product, clickInsertProduct, onChange, selectCategory } =
     useInsertProduct();
@@ -88,5 +88,3 @@ const ProductInsert = () => {
     </Screen>
   );
 };
-
-export default ProductInsert;

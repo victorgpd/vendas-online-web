@@ -1,4 +1,4 @@
-import ProductInsert from '../ProductInsert';
+import { ProductInsert } from '../ProductInsert';
 import { fireEvent, render } from '@testing-library/react';
 import { mockProductInsert } from '../../__mocks__/ProductInsert.mock';
 

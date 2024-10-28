@@ -57,6 +57,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "pre-commit": "^1.2.2",
     "prettier": "^3.3.3",
+    "redux-mock-store": "^1.5.5",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.7.0",
     "vite": "^5.4.8"
@@ -67,7 +68,15 @@
       "<rootDir>/setup-tests.js"
     ],
     "collectCoverageFrom": [
-      "<rootDir>/src/**/*.{js,ts,jsx,tsx}"
+      "<rootDir>/src/**/*.{js,ts,jsx,tsx}",
+      "!<rootDir>/**/*Type.{js,ts,jsx,tsx}",
+      "!<rootDir>/**/*.styled.{js,ts,jsx,tsx}",
+      "!<rootDir>/**/icons/**",
+      "!<rootDir>/**/App.tsx",
+      "!<rootDir>/**/main.tsx",
+      "!<rootDir>/**/vite-env.d.ts",
+      "!<rootDir>/**/index.ts",
+      "!<rootDir>/**/*.enum.{js,ts,jsx,tsx}"
     ]
   }
 }
