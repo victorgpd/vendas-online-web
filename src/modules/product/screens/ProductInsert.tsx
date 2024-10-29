@@ -52,7 +52,7 @@ export const ProductInsert = () => {
             title="Categoria"
             width="100%"
             onChange={selectCategory}
-            options={categories.map((category: CategoryType) => ({
+            options={categories?.map((category: CategoryType) => ({
               label: `${category.name.toUpperCase()}`,
               value: `${category.id}`,
             }))}

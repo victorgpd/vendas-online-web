@@ -35,7 +35,7 @@ jest.mock('../../../store/reducers/categoryReducer/useCategoryReducer', () => ({
   }),
 }));
 
-describe.only('Test useInsertProduct', () => {
+describe('Test useInsertProduct', () => {
   it('should return initial values', () => {
     const { result } = renderHook(() => useInsertProduct());
 

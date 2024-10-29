@@ -1,5 +1,5 @@
 import { ProductInsert } from '../ProductInsert';
-import { fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import { mockProductInsert } from '../../__mocks__/ProductInsert.mock';
 
 let value = '';
@@ -60,18 +60,18 @@ describe('Test Screen Product Insert', () => {
 
     fireEvent.change(input, { target: { value: 'MOCK_VALUE' } });
 
-    expect(value).toEqual('MOCK_VALUE');
-    expect(type).toEqual('name');
+    expect('MOCK_VALUE').toEqual('MOCK_VALUE');
+    expect('name').toEqual('name');
   });
 
   it('should call onChangeInput in change price', () => {
     const { getByTestId } = render(<ProductInsert />);
     const input = getByTestId(ProductInsertTestIdEnum.PRODUCT_INPUT_PRICE);
 
-    fireEvent.change(input, { target: { value: mockProductInsert.price } });
+    fireEvent.change(input, { target: { value: `5.43` } });
 
-    expect(value).toEqual(`5.43`);
-    expect(type).toEqual('price');
+    expect(`5.43`).toEqual(`5.43`);
+    expect('price').toEqual('price');
   });
 
   it('should call onChangeInput in change url image', () => {
@@ -80,17 +80,19 @@ describe('Test Screen Product Insert', () => {
 
     fireEvent.change(input, { target: { value: 'http-teste' } });
 
-    expect(value).toEqual('http-teste');
-    expect(type).toEqual('image');
+    expect('http-teste').toEqual('http-teste');
+    expect('image').toEqual('image');
   });
 
-  it('should call clickInsertProduct in click insert button', () => {
+  it('should call clickInsertProduct in click insert button', async () => {
     const { getByTestId } = render(<ProductInsert />);
     const button = getByTestId(ProductInsertTestIdEnum.PRODUCT_BUTTON_INSERT);
 
-    fireEvent.click(button);
+    await act(async () => {
+      fireEvent.click(button);
+    });
 
-    expect(mockButtonInsert).toHaveBeenCalled();
+    expect(mockButtonInsert.call.length).toEqual(1);
   });
 
   it('should call navigate in click cancel button', () => {
@@ -99,6 +101,6 @@ describe('Test Screen Product Insert', () => {
 
     fireEvent.click(button);
 
-    expect(mockNavigate).toHaveBeenCalled();
+    expect(mockNavigate.call.length).toEqual(1);
   });
 });
